@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+<div th:fragment="form">
+    <form action="#" th:action="@{/verifyToken}" th:object="${userInfo}" method="post">
+        <p>Numer telefonu: <input type="text" th:field="*{phone_number}"/></p>
+        <p>Token do wprowadzenia: <input type="text" th:field="*{tokenCheck}"/></p>
+        <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+    </form>
+</div>
+</body>
+</html>

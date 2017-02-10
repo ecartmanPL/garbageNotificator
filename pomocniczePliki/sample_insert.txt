@@ -1,0 +1,4 @@
+ INSERT INTO outbox (
+ DestinationNumber, TextDecoded, CreatorID, Coding, DeliveryReport
+ ) VALUES (
+ '+48782219369', 'Testowa wiadomosc!', 'Program', 'Default_No_Compression', 'yes' );
