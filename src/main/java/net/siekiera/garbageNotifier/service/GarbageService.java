@@ -51,7 +51,7 @@ public class GarbageService {
         smsOutboxDao.save(sms);
     }
 
-    public void sendSmsAfter(String number, String text, Date timestamp) {
+    public void sendSmsAtTime(String number, String text, Date timestamp) {
         SmsOutbox sms = new SmsOutbox();
         sms.setDestinationNumber(number);
         sms.setTextDecoded(text);
@@ -97,19 +97,14 @@ public class GarbageService {
     }
 
     /**
-     * Returns next garbage collections for each street and each garbage type.
+     * Returns next garbage collections.
      *
      * @return
      */
     public List getNextGarbageCollections() {
-        List<GarbageCollection> garbageCollectionList = new ArrayList<GarbageCollection>();
-        List<Object[]> objects = garbageCollectionDao.findNearestCollections();
-        for (Object[] singleObject : objects) {
-            GarbageCollection garbageCollection = garbageCollectionDao.findCollectionByDateGroupAndType
-                    ((Timestamp) singleObject[0], (StreetGroup) singleObject[1], (GarbageType) singleObject[2]);
-            garbageCollectionList.add(garbageCollection);
-        }
-        return garbageCollectionList;
+        Date nextMidnight = nextMidnight();
+        List<GarbageCollection> garbageCollections = garbageCollectionDao.findCollectionsByDate(nextMidnight);
+        return garbageCollections;
     }
 
     public List getActiveUsers() {
@@ -123,5 +118,23 @@ public class GarbageService {
             garbageCollections.add(singleGarbageCollection);
         }
         return garbageCollections;
+    }
+
+    public Date nextMidnight() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(new Date());
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        return calendar.getTime();
+    }
+
+    public Date smsSendingTime(Integer czas) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(nextMidnight());
+        calendar.add(Calendar.HOUR_OF_DAY, czas);
+        return calendar.getTime();
+
     }
 }

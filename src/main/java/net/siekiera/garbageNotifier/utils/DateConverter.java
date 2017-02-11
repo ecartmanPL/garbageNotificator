@@ -19,7 +19,7 @@ public class DateConverter {
     private static final String FILENAME = "C:\\temp\\dates.txt";
     static Logger log = Logger.getLogger(DateConverter.class.getName());
 
-    public static void main(String[] args) {
+    private void main(String[] args) {
         try (BufferedReader br = new BufferedReader(new FileReader(FILENAME))) {
             String singleLine;
             StringBuilder sb = new StringBuilder();

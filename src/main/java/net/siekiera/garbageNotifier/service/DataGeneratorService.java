@@ -23,6 +23,8 @@ public class DataGeneratorService {
     private static final long TYPE_SEGREGATED = 7;
     private static final long TYPE_MIXED = 8;
     private static final long TYPE_ASH = 9;
+    private static final long TYPE_LARGE = 10;
+    private static final long TYPE_ELECTRO = 11;
 
     private static final long STREET_GROUP_1 = 5;
     private static final long STREET_GROUP_2 = 6;
@@ -52,12 +54,12 @@ public class DataGeneratorService {
     }
 
     public void fillCollectionTable() {
-        StreetGroup streetGroup = streetGroupDao.findOne(STREET_GROUP_2);
-        GarbageType garbageType = garbageTypeDao.findOne(TYPE_ASH);
+        StreetGroup streetGroup = streetGroupDao.findOne(STREET_GROUP_4);
+        GarbageType garbageType = garbageTypeDao.findOne(TYPE_ELECTRO);
         SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
 
 
-        String[] dates = new String[]{"10.1.2017", "24.1.2017", "7.2.2017", "21.2.2017", "7.3.2017", "21.3.2017", "4.4.2017", "18.4.2017", "16.5.2017", "13.6.2017", "11.7.2017", "8.8.2017", "5.9.2017", "3.10.2017", "17.10.2017", "31.10.2017", "14.11.2017", "28.11.2017", "12.12.2017", "29.12.2017"};
+        String[] dates = new String[]{"22.06.2017"};
         for (int i = 0; i < dates.length; i++) {
             try {
                 Date date = formatter.parse(dates[i]);

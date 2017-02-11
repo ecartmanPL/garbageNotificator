@@ -7,6 +7,7 @@ import net.siekiera.garbageNotifier.dao.StreetGroupDao;
 import net.siekiera.garbageNotifier.model.*;
 import net.siekiera.garbageNotifier.service.DataGeneratorService;
 import net.siekiera.garbageNotifier.service.GarbageService;
+import net.siekiera.garbageNotifier.utils.ScheduledTasks;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,6 +42,8 @@ public class MainController {
     DataGeneratorService dataGeneratorService;
     @Autowired
     GarbageCollectionDao garbageCollectionDao;
+    @Autowired
+    ScheduledTasks scheduledTasks;
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView home(Model model) {
@@ -63,6 +66,7 @@ public class MainController {
 
     @RequestMapping(value = "/testQuery")
     public ModelAndView testQuery() throws ParseException {
+        garbageService.sendSms("782219369", "To jest test!");
         return null;
     }
 }

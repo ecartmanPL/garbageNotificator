@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,4 +26,7 @@ public interface GarbageCollectionDao extends CrudRepository<GarbageCollection, 
 
     @Query("SELECT g from GarbageCollection g where g.date = :date and g.streetGroup = :streetGroup and g.garbageType = :garbageType")
     GarbageCollection findCollectionByDateGroupAndType(@Param("date") Timestamp date, @Param("streetGroup") StreetGroup streetGroup, @Param("garbageType") GarbageType garbageType);
+
+    @Query("SELECT g from GarbageCollection g where g.date = :date")
+    List<GarbageCollection> findCollectionsByDate(@Param("date") Date date);
 }
