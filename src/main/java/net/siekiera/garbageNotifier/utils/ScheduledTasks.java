@@ -36,7 +36,7 @@ public class ScheduledTasks {
             StringBuilder sb = new StringBuilder();
             Date sendingTime = garbageService.smsSendingTime(userInfo.getCzas());
             for (GarbageCollection garbageCollection : garbageCollections) {
-                if (garbageCollection.getStreetGroup() == userInfo.getStreet().getStreetGroup()) {
+                if (garbageCollection.getStreetGroup().getId() == userInfo.getStreet().getStreetGroup().getId()) {
                     if (sb.length() == 0) {
                         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
                         sb.append(dateFormat.format(garbageCollection.getDate()) + ": ");

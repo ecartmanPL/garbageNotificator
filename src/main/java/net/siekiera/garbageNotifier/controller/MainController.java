@@ -66,7 +66,8 @@ public class MainController {
 
     @RequestMapping(value = "/testQuery")
     public ModelAndView testQuery() throws ParseException {
-        garbageService.sendSms("782219369", "To jest test!");
+        scheduledTasks.sendDailySmsMessages();
+        //garbageService.sendSms("782219369", "To jest test!");
         return null;
     }
 }
